@@ -1,11 +1,12 @@
 import streamlit as st
 import pandas as pd
 #import matplotlib.pyplot as plt
-import numpy as np
-import json,requests
-import plotly.express as px
-import plotly.graph_objects as go
-from PIL import Image
+# import numpy as np
+# import json
+# import requests
+# import plotly.express as px
+# import plotly.graph_objects as go
+# from PIL import Image
 
 #st.set_page_config(layout="wide")
 

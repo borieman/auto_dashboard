@@ -14,7 +14,7 @@ import pandas as pd
 
 # st.image(image, width=700)
 
-st.title('NS calamiteiten van 24-09 t/m 26-09')
+st.title('Elektrische auto dashboard')
 
 
 # #Update de figuur om de dropdown buttons toe te voegen en laat de figuur zien

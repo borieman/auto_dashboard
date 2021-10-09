@@ -10,17 +10,17 @@ import pandas as pd
 
 #st.set_page_config(layout="wide")
 
-image = Image.open('trein.jpg')
+# image = Image.open('trein.jpg')
 
-st.image(image, width=700)
+# st.image(image, width=700)
 
 st.title('NS calamiteiten van 24-09 t/m 26-09')
 
 
-#Update de figuur om de dropdown buttons toe te voegen en laat de figuur zien
-fig.update_layout({'updatemenus':[{'active':0, 'buttons':dropdown_buttons}]})
+# #Update de figuur om de dropdown buttons toe te voegen en laat de figuur zien
+# fig.update_layout({'updatemenus':[{'active':0, 'buttons':dropdown_buttons}]})
 
-st.plotly_chart(fig)
+# st.plotly_chart(fig)
 
 st.markdown(""" 
 In bovenstaande figuur is een boxplot weergegeven met de impactwaardes van de calamiteiten per station. Met behulp van een 

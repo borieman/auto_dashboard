@@ -23,11 +23,7 @@ st.title('Elektrische auto dashboard')
 # st.plotly_chart(fig)
 
 st.markdown(""" 
-In bovenstaande figuur is een boxplot weergegeven met de impactwaardes van de calamiteiten per station. Met behulp van een 
-dropbox kunnen de gegevens per station worden weergegeven. 
-Als je met je muis over de boxplot beweegt wordt het minimum, maximum, mediaan, eerste en derde kwartiel gegeven.
-Een aantal stations hebben enkel calamiteiten gehad van de impact waarde 4 waardoor de boxplot een lijn is geworden.
-Alleen de stations met calamiteiten zullen worden weergegeven. 
+blip bloop bloop 
 """)
 
 st.write("""

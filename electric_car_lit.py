@@ -11,6 +11,11 @@ import plotly.figure_factory as ff
 import plotly.io as pio
 pio.templates.default = 'seaborn'
 
+#INGEEEEEEE
+#Laad en lees df3 in als df_v
+df4 = pd.read_csv('df3.csv')
+df5 = df4.drop(columns = 'Unnamed: 0')
+df5
 
 #st.set_page_config(layout="wide")
 

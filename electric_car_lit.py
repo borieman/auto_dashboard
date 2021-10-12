@@ -72,7 +72,7 @@ chargingDf = pd.DataFrame(rows,columns=columnNames)
 
 
 #solution: merge a new dataframe that contains the correct geograhpal information on de 'postcode' column
-postcodedf = pd.read_csv('postcode_dim.csv',sep=';',encoding = "utf_8")
+postcodedf = pd.read_csv('postcode_dim.csv',sep=';',engine='python')
 
 DF_charging = chargingDf.merge(postcodedf, left_on='Postcode',right_on='Postcode',suffixes=('_C','_P'))
 

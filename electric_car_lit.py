@@ -17,6 +17,27 @@ df4 = pd.read_csv('df3.csv')
 df5 = df4.drop(columns = 'Unnamed: 0')
 df5
 
+#Code voor interactieve barplot met plotly.express
+fig1 = px.bar(df5, 
+              x = "DagLabelKort", 
+              y = "ChargeTime", 
+              color = "DagLabelKort", 
+              hover_name = "Started_datum",
+              animation_frame = "MaandLabelKort", 
+              labels = {'DagLabelKort':'Dag', 'MaandLabelKort':'Maand', 'ChargeTime':'Totale oplaadtijd (in uren)'}, 
+              opacity = 0.5,
+              title = 'Barplot van de totale oplaadtijd van de elektrische autos per dag per maand in 2018')
+
+#Laat de figuur zien
+st.plotly_chart(fig1)
+
+
+
+
+
+
+
+
 #st.set_page_config(layout="wide")
 
 st.title('Elektrische auto dashboard')

@@ -102,7 +102,7 @@ for key,charger in DF_charging[filterProvince].iterrows():
 folium.LayerControl().add_to(m)    
     
 #Laat de map zien
-display(m)
+st.plotly_chart(m)
 
 
 

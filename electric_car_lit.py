@@ -12,7 +12,7 @@ import plotly.io as pio
 pio.templates.default = 'seaborn'
 
 #INGEEEEEEE
-#Laad en lees df3 in als df_v
+#Laad en lees df3 in 
 df4 = pd.read_csv('df3.csv')
 df5 = df4.drop(columns = 'Unnamed: 0')
 df5

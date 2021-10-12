@@ -10,6 +10,7 @@ import plotly.express as px
 import plotly.figure_factory as ff
 import plotly.io as pio
 pio.templates.default = 'seaborn'
+import statsmodels.api as sm
 
 #st.set_page_config(layout="wide")
 

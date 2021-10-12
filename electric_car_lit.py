@@ -67,7 +67,7 @@ with open('opencharge_10000.json') as json_file:
 
 
 chargingDf = pd.DataFrame(rows,columns=columnNames)
-print(chargingDf.head())
+chargingDf.head()
 
 
 

@@ -15,7 +15,6 @@ pio.templates.default = 'seaborn'
 #Laad en lees df3 in 
 df4 = pd.read_csv('df3.csv')
 df5 = df4.drop(columns = 'Unnamed: 0')
-df5
 
 #Code voor interactieve barplot met plotly.express
 fig1 = px.bar(df5, 
@@ -77,6 +76,45 @@ fig2.update_layout({'updatemenus':[{'active':0, 'buttons':dropdown_buttons}]})
 
 #Laat de figuur zien
 st.plotly_chart(fig2)
+
+#Code voor interactieve boxplot met plotly.express
+fig3 = px.box(df5, 
+              x = 'MaandLabelKort', 
+              y = "ChargeTime", 
+              color = 'MaandLabelKort', 
+              hover_name = 'Started_datum', 
+              labels = {'MaandLabelKort':'Maand', 'ChargeTime':'Oplaadtijd (in uren)'}, 
+              points = 'all',
+              title = 'Boxplot van de oplaadtijd van de elektrische autos per maand in 2018')
+
+#Dropdown buttons
+dropdown_buttons = [
+    {'label':"2018", 'method':"update", 'args':[{"visible":[True, True, True, True, True, True, True, True, True, True, True, True]}]},
+    {'label':"jan", 'method':"update", 'args':[{"visible":[True, False, False, False, False, False, False, False, False, False, False, False]}]},
+    {'label':"feb", 'method':"update", 'args':[{"visible":[False, True, False, False, False, False, False, False, False, False, False, False]}]},
+    {'label':"mrt", 'method':"update", 'args':[{"visible":[False, False, True, False, False, False, False, False, False, False, False, False]}]}, 
+    {'label':"apr", 'method':"update", 'args':[{"visible":[False, False, False, True, False, False, False, False, False, False, False, False]}]}, 
+    {'label':"mei", 'method':"update", 'args':[{"visible":[False, False, False, False, True, False, False, False, False, False, False, False]}]}, 
+    {'label':"jun", 'method':"update", 'args':[{"visible":[False, False, False, False, False, True, False, False, False, False, False, False]}]}, 
+    {'label':"jul", 'method':"update", 'args':[{"visible":[False, False, False, False, False, False, True, False, False, False, False, False]}]}, 
+    {'label':"aug", 'method':"update", 'args':[{"visible":[False, False, False, False, False, False, False, True, False, False, False, False]}]}, 
+    {'label':"sep", 'method':"update", 'args':[{"visible":[False, False, False, False, False, False, False, False, True, False, False, False]}]}, 
+    {'label':"okt", 'method':"update", 'args':[{"visible":[False, False, False, False, False, False, False, False, False, True, False, False]}]}, 
+    {'label':"nov", 'method':"update", 'args':[{"visible":[False, False, False, False, False, False, False, False, False, False, True, False]}]}, 
+    {'label':"dec", 'method':"update", 'args':[{"visible":[False, False, False, False, False, False, False, False, False, False, False, True]}]}
+]
+
+#Lijn met annotatie van de gemiddelde oplaadtijd
+fig3.add_hline(y = df5['ChargeTime'].mean(), 
+               line_dash = "dot",
+               annotation_text = "Gemiddelde oplaadtijd (in uren)", 
+               annotation_position = "top right")
+
+#Update de figuur
+fig3.update_layout({'updatemenus':[{'active':0, 'buttons':dropdown_buttons}]})
+
+#Laat de figuur zien
+st.plotly_chart(fig3)
 
 
 

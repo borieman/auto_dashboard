@@ -1,9 +1,9 @@
 import streamlit as st
 import pandas as pd
-#import matplotlib.pyplot as plt
-# import numpy as np
-# import json
-# import requests
+import matplotlib.pyplot as plt
+import numpy as np
+import json
+import requests
 # import plotly.express as px
 # import plotly.graph_objects as go
 # from PIL import Image

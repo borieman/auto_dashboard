@@ -22,7 +22,6 @@ rows = []
 with open('opencharge_10000.json') as json_file:
         data = json.load(json_file)
         for key,document in enumerate(data):
-            print(key)
             #
             operatorInfo = document['OperatorInfo']
             #als er meerdere van dit soort checks er in moeten dan kan je er een functie van maken waarbij als parameter een vervang waarde

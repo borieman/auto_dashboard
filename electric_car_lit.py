@@ -17,6 +17,10 @@ st.write("""
 ***
 """)
 
+HVAcords = [52.34590306716925,4.916398740317223]
+lat = HVAcords[0]
+long = HVAcords[1]
+
 columnNames = ['OperatorTitle','Postcode','town','province','latitude','longitude','distance','connectTypeTitle','connectTypeDiscont','isfastcharge','levelTitle','dateLSU','dateCreated']
 rows = []
 

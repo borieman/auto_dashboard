@@ -116,6 +116,52 @@ fig3.update_layout({'updatemenus':[{'active':0, 'buttons':dropdown_buttons}]})
 #Laat de figuur zien
 st.plotly_chart(fig3)
 
+#Code voor interactieve kansdichtheidsfunctie met plotly.figure_factory
+jan = df5[df5['MaandLabelKort'] == 'jan']['ChargeTime']
+feb = df5[df5['MaandLabelKort'] == 'feb']['ChargeTime']
+mrt = df5[df5['MaandLabelKort'] == 'mrt']['ChargeTime']
+apr = df5[df5['MaandLabelKort'] == 'apr']['ChargeTime']
+mei = df5[df5['MaandLabelKort'] == 'mei']['ChargeTime']
+jun = df5[df5['MaandLabelKort'] == 'jun']['ChargeTime']
+jul = df5[df5['MaandLabelKort'] == 'jul']['ChargeTime']
+aug = df5[df5['MaandLabelKort'] == 'aug']['ChargeTime']
+sep = df5[df5['MaandLabelKort'] == 'sep']['ChargeTime']
+okt = df5[df5['MaandLabelKort'] == 'okt']['ChargeTime']
+nov = df5[df5['MaandLabelKort'] == 'nov']['ChargeTime']
+dec = df5[df5['MaandLabelKort'] == 'dec']['ChargeTime']
+
+data = [jan, feb, mrt, apr, mei, jun, jul, aug, sep, okt, nov, dec]
+
+labels = ['Januari', 'Februari', 'Maart', 'April', 'Mei', 'Juni', 'Juli', 'Augustus', 'September', 'Oktober', 'November', 'December']
+
+fig4 = ff.create_distplot(hist_data = data, group_labels = labels, curve_type = 'normal')
+
+#Dropdown buttons
+dropdown_buttons = [
+    {'label':"2018", 'method':"update", 'args':[{"visible":[True, True, True, True, True, True, True, True, True, True, True, True]}]},
+    {'label':"jan", 'method':"update", 'args':[{"visible":[True, False, False, False, False, False, False, False, False, False, False, False]}]},
+    {'label':"feb", 'method':"update", 'args':[{"visible":[False, True, False, False, False, False, False, False, False, False, False, False]}]},
+    {'label':"mrt", 'method':"update", 'args':[{"visible":[False, False, True, False, False, False, False, False, False, False, False, False]}]}, 
+    {'label':"apr", 'method':"update", 'args':[{"visible":[False, False, False, True, False, False, False, False, False, False, False, False]}]}, 
+    {'label':"mei", 'method':"update", 'args':[{"visible":[False, False, False, False, True, False, False, False, False, False, False, False]}]}, 
+    {'label':"jun", 'method':"update", 'args':[{"visible":[False, False, False, False, False, True, False, False, False, False, False, False]}]}, 
+    {'label':"jul", 'method':"update", 'args':[{"visible":[False, False, False, False, False, False, True, False, False, False, False, False]}]}, 
+    {'label':"aug", 'method':"update", 'args':[{"visible":[False, False, False, False, False, False, False, True, False, False, False, False]}]}, 
+    {'label':"sep", 'method':"update", 'args':[{"visible":[False, False, False, False, False, False, False, False, True, False, False, False]}]}, 
+    {'label':"okt", 'method':"update", 'args':[{"visible":[False, False, False, False, False, False, False, False, False, True, False, False]}]}, 
+    {'label':"nov", 'method':"update", 'args':[{"visible":[False, False, False, False, False, False, False, False, False, False, True, False]}]}, 
+    {'label':"dec", 'method':"update", 'args':[{"visible":[False, False, False, False, False, False, False, False, False, False, False, True]}]}
+]
+
+#Update de figuur
+fig4.update_layout({'updatemenus':[{'active':0, 'buttons':dropdown_buttons}]}, 
+                   xaxis_title = 'Oplaadtijd (in uren)', 
+                   title='Kansdichtheidsfunctie van de oplaadtijd van de elektrische autos per maand in 2018', 
+                   legend = {'traceorder':'normal'})
+
+#Laat de figuur zien
+st.plotly_chart(fig4)
+
 
 
 

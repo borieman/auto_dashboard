@@ -11,6 +11,14 @@ import plotly.figure_factory as ff
 import plotly.io as pio
 pio.templates.default = 'seaborn'
 
+#st.set_page_config(layout="wide")
+
+st.title('Elektrische auto dashboard')
+
+st.write("""
+***
+""")
+
 #INGEEEEEEE
 #Laad en lees df3 in 
 df4 = pd.read_csv('df3.csv')
@@ -162,6 +170,23 @@ fig4.update_layout({'updatemenus':[{'active':0, 'buttons':dropdown_buttons}]},
 #Laat de figuur zien
 st.plotly_chart(fig4)
 
+#Code voor interactieve scatterplot met plotly.express
+fig5 = px.scatter(df5, 
+                  x = "TotalEnergy", 
+                  y = "ChargeTime", 
+                  size = "MaxPower", 
+                  hover_name = "Started_datum",
+                  color = "DagLabelKort", 
+                  animation_frame = "MaandLabelKort",
+                  labels = {'DagLabelKort':'Dag', 'MaandLabelKort':'Maand', 'TotalEnergy':'Totaal verbruikte energie (in wattuur)', 
+                            'ChargeTime':'Oplaadtijd (in uren)', 'MaxPower':'Maximaal gevraagde vermogen (in watt)'}, 
+                  opacity = 0.5, 
+                  trendline = 'ols', 
+                  trendline_scope = 'overall', 
+                  title = 'Scatterplot van de totale energie, oplaadtijd en maximaal vermogen')
+
+#Laat de figuur zien
+st.plotly_chart(fig5)
 
 
 
@@ -169,14 +194,7 @@ st.plotly_chart(fig4)
 
 
 
-#st.set_page_config(layout="wide")
-
-st.title('Elektrische auto dashboard')
-
-st.write("""
-***
-""")
-
+#YASINNNNNNNN
 # HVAcords = [52.34590306716925,4.916398740317223]
 # lat = HVAcords[0]
 # long = HVAcords[1]

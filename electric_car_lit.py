@@ -62,8 +62,7 @@ with open('opencharge_10000.json') as json_file:
             #
             dateLSU = document['DateLastStatusUpdate']
             dateCreated = document['DateCreated']
-            print(OperatorTitle,postcode,town,province,latitude,longitude,distance,connectTypeTitle,connectTypeDiscont,isfastcharge,levelTitle,dateLSU,dateCreated)
-            #print('\n',OperatorTitle,postcode,town,province,latitude,longitude,distance,connectTypeTitle,connectTypeDiscont,isfastcharge,levelTitle,dateLSU,dateCreated)
+            #
             rows.append([OperatorTitle,postcode,town,province,latitude,longitude,distance,connectTypeTitle,connectTypeDiscont,isfastcharge,levelTitle,dateLSU,dateCreated])
 
 

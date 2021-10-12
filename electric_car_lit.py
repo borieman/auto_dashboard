@@ -32,17 +32,9 @@ st.write("""
 
 st.markdown(""" 
 **Bronnenlijst**\n
-DataCamp. (z.d.). DataCamp. Geraadpleegd op 29 september 2021, 
+DataCamp. (z.d.). DataCamp. Geraadpleegd op 10 oktober 2021, 
 van https://www.datacamp.com/users/sign_in?redirect=https%3A%2F%2Flearn.datacamp.com%2F
-\n
-plotly.express.box — 5.3.1 documentation. (z.d.). Plotly. Geraadpleegd op 29 september 2021, 
-van https://plotly.github.io/plotly.py-docs/generated/plotly.express.box.html
-\n
-plotly.express.histogram — 5.3.1 documentation. (n.d.). Plotly. Geraadpleegd op 29 September 2021, 
-van https://plotly.github.io/plotly.py-docs/generated/plotly.express.histogram.html
-\n
-plotly.express.scatter_geo — 5.3.1 documentation. (n.d.). Plotly. Geraadpleegd op 26 September 2021, 
-van https://plotly.com/python-api-reference/generated/plotly.express.scatter_geo
+
 \n
 plotly.express.timeline — 5.3.1 documentation. (n.d.). Plotly. Geraadpleegd op 29 September 2021, 
 van https://plotly.com/python-api-reference/generated/plotly.express.timeline.html

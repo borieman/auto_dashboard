@@ -6,15 +6,84 @@ import json
 import requests
 # import plotly.express as px
 # import plotly.graph_objects as go
-# from PIL import Image
+
 
 #st.set_page_config(layout="wide")
 
-# image = Image.open('trein.jpg')
-
-# st.image(image, width=700)
-
 st.title('Elektrische auto dashboard')
+
+st.write("""
+***
+""")
+
+columnNames = ['OperatorTitle','Postcode','town','province','latitude','longitude','distance','connectTypeTitle','connectTypeDiscont','isfastcharge','levelTitle','dateLSU','dateCreated']
+rows = []
+
+with open('opencharge_10000.json') as json_file:
+        data = json.load(json_file)
+        for key,document in enumerate(data):
+            print(key)
+            #
+            operatorInfo = document['OperatorInfo']
+            #als er meerdere van dit soort checks er in moeten dan kan je er een functie van maken waarbij als parameter een vervang waarde
+            if operatorInfo :
+                OperatorTitle = operatorInfo['Title']
+            else:
+                OperatorTitle = 'unkown'
+            #adressinfo columns
+            adressInfo = document['AddressInfo']
+            #print(adressInfo)
+            postcode = adressInfo['Postcode']
+            town = adressInfo['Town']
+            province = adressInfo['StateOrProvince']
+            latitude = adressInfo['Latitude'] 
+            longitude = adressInfo['Longitude']
+            distance = adressInfo['Distance']
+            #print('\n',postcode,town,province,latitude,longitude,distance,distanceUnit)
+            
+            #Connections columns
+            connections = document['Connections']
+
+            #print('\n',connections[0],'\n',connections[1])
+            if connections:
+                connectTypeTitle = connections[0]['ConnectionType']['Title']
+                connectTypeDiscont = connections[0]['ConnectionType']['IsDiscontinued']
+              
+            else:
+                connectTypeTitle = 'unkown2'
+                connectTypeDiscont = 'unkown3'
+           
+           
+            if connections and connections[0]['Level']:
+                isfastcharge = connections[0]['Level']['IsFastChargeCapable']
+                levelTitle = connections[0]['Level']['Title']
+            else:
+                isfastcharge = False
+                levelTitle = 'unkown5'
+            
+            
+            #
+            dateLSU = document['DateLastStatusUpdate']
+            dateCreated = document['DateCreated']
+            print(OperatorTitle,postcode,town,province,latitude,longitude,distance,connectTypeTitle,connectTypeDiscont,isfastcharge,levelTitle,dateLSU,dateCreated)
+            #print('\n',OperatorTitle,postcode,town,province,latitude,longitude,distance,connectTypeTitle,connectTypeDiscont,isfastcharge,levelTitle,dateLSU,dateCreated)
+            rows.append([OperatorTitle,postcode,town,province,latitude,longitude,distance,connectTypeTitle,connectTypeDiscont,isfastcharge,levelTitle,dateLSU,dateCreated])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 # #Update de figuur om de dropdown buttons toe te voegen en laat de figuur zien

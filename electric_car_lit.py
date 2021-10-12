@@ -22,7 +22,6 @@ rows = []
 with open('opencharge_10000.json') as json_file:
         data = json.load(json_file)
         for key,document in enumerate(data):
-            print(key)
             #
             operatorInfo = document['OperatorInfo']
             #als er meerdere van dit soort checks er in moeten dan kan je er een functie van maken waarbij als parameter een vervang waarde
@@ -39,11 +38,9 @@ with open('opencharge_10000.json') as json_file:
             latitude = adressInfo['Latitude'] 
             longitude = adressInfo['Longitude']
             distance = adressInfo['Distance']
-            #print('\n',postcode,town,province,latitude,longitude,distance,distanceUnit)
             
             #Connections columns
             connections = document['Connections']
-
             #print('\n',connections[0],'\n',connections[1])
             if connections:
                 connectTypeTitle = connections[0]['ConnectionType']['Title']
@@ -52,8 +49,7 @@ with open('opencharge_10000.json') as json_file:
             else:
                 connectTypeTitle = 'unkown2'
                 connectTypeDiscont = 'unkown3'
-           
-           
+        
             if connections and connections[0]['Level']:
                 isfastcharge = connections[0]['Level']['IsFastChargeCapable']
                 levelTitle = connections[0]['Level']['Title']
@@ -65,13 +61,13 @@ with open('opencharge_10000.json') as json_file:
             #
             dateLSU = document['DateLastStatusUpdate']
             dateCreated = document['DateCreated']
-            print(OperatorTitle,postcode,town,province,latitude,longitude,distance,connectTypeTitle,connectTypeDiscont,isfastcharge,levelTitle,dateLSU,dateCreated)
-            #print('\n',OperatorTitle,postcode,town,province,latitude,longitude,distance,connectTypeTitle,connectTypeDiscont,isfastcharge,levelTitle,dateLSU,dateCreated)
+            #
             rows.append([OperatorTitle,postcode,town,province,latitude,longitude,distance,connectTypeTitle,connectTypeDiscont,isfastcharge,levelTitle,dateLSU,dateCreated])
 
 
 
-
+chargingDf = pd.DataFrame(rows,columns=columnNames)
+chargingDf.head()
 
 
 

@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import json
 import requests
+import folium
 # import plotly.express as px
 # import plotly.graph_objects as go
 
@@ -67,12 +68,37 @@ with open('opencharge_10000.json') as json_file:
 
 
 chargingDf = pd.DataFrame(rows,columns=columnNames)
-chargingDf.head()
+# chargingDf.head()
+
+
+#solution: merge a new dataframe that contains the correct geograhpal information on de 'postcode' column
+postcodedf = pd.read_csv('postcode_dim.csv',sep=';',encoding = "ANSI")
+
+DF_charging = chargingDf.merge(postcodedf, left_on='Postcode',right_on='Postcode',suffixes=('_C','_P'))
+
+columns = ['OperatorTitle','Postcode','latitude','longitude','distance','connectTypeTitle','connectTypeDiscont','isfastcharge','levelTitle','dateLSU','dateCreated','Gemeente','Provincie','Latitude','Longitude']
+DF_charging = DF_charging[columns]
 
 
 
+import folium
+from folium.plugins import MarkerCluster
+#Code voor het maken van een kleurloze map van Nederland 
+m = folium.Map(location = HVAcords, zoom_start = 7.5, tiles = 'Cartodb Positron')
 
+#Code voor het toevoegen van drie markers op drie verschillende locaties in Nederland
+#DF_charging2 = pd.DataFrame(DF_charging)
+filterProvince = DF_charging['Provincie'] == 'Overijssel'
 
+for key,charger in DF_charging[filterProvince].iterrows():
+    #print(charger)
+    folium.Marker(location = [charger['latitude'], charger['longitude']], popup = charger['OperatorTitle']+'\n locatie: '+str(charger['latitude'])+' '+str(charger['longitude'])).add_to(m)
+    
+    
+folium.LayerControl().add_to(m)    
+    
+#Laat de map zien
+display(m)
 
 
 

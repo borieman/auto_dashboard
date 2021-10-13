@@ -185,7 +185,7 @@ fig5 = px.scatter(df5,
                   opacity = 0.5, 
                   trendline = 'ols', 
                   trendline_scope = 'overall', 
-                  title = 'Scatterplot van de totale energie, oplaadtijd en maximaal vermogen')
+                  title = 'Scatterplot van de totale energie, oplaadtijd en maximaal vermogen van de elektrische autos')
 
 #Laat de figuur zien
 st.plotly_chart(fig5)

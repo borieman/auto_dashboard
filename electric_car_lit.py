@@ -70,16 +70,10 @@ fig.update_layout(
 
 dropdown_buttons = [
 {'label': "ALL", 'method': "update", 'args': [{"visible": [True, True, True,True,True,True,True,True,True]}, {"title": "ALL"}]},
-{'label': "1.0", 'method': "update", 'args': [{"visible": [False, False, False,False,True,False,False,False,False]}, {"title": 1.0}]},
-{'label': "2.0", 'method': "update", 'args': [{"visible": [False, False, False,False,False,False,True,False,False]}, {"title": 2.0}]},
-{'label': "3.0", 'method': "update", 'args': [{"visible": [False, False, False,False,False,True,False,False,False]}, {"title": 3.0}]},
 {'label': "4.0", 'method': "update", 'args': [{"visible": [False, False, False, True, False,False,False,False,False]}, {"title": 4.0}]},
 {'label': "5.0", 'method': "update", 'args': [{"visible": [True, False, False,False,False,False,False,False,False]}, {"title": 5.0}]},
 {'label': "6.0", 'method': "update", 'args': [{"visible": [False, False, True,False,False,False,False,False,False]}, {"title": 6.0}]},
 {'label': "7.0", 'method': "update", 'args': [{"visible": [False, True, False,False,False,False,False,False,False]}, {"title": 7.0}]},
-{'label': "8.0", 'method': "update", 'args': [{"visible": [False, False, False,False,False,False,False,True,False]}, {"title": 8.0}]},
-{'label': "9.0", 'method': "update", 'args': [{"visible": [False, False, False,False,False,False,False,False,True]}, {"title": 9.0}]},
-
 ]
 
 # Update the figure to add dropdown menu

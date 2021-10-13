@@ -87,7 +87,8 @@ fig.update_layout({'updatemenus': [{'active': 0, 'buttons': dropdown_buttons}]})
 col2.plotly_chart(fig)
 
 
-col1.header("Kleuren van de auto's")
+
+#Kolom 1 rij 2
 # Histogram van het aantal per kleur. 
 fig = go.Figure()
 
@@ -106,7 +107,40 @@ fig.update_layout(
 
 col1.plotly_chart(fig)
 
+#Kolom 2 rij 2
+fig = go.Figure()
 
+fig = px.histogram(data_frame=df_merk, 
+                   x="Merk", 
+                   color='Eerste kleur',
+                   color_discrete_sequence=["grey", "ivory", "black", "blue", "red", "brown", "yellow", 
+                                           "green", "orange", "purple", "beige", "tan"])
+fig.update_layout(
+    title_text='Soort kleur per automerk', # title of plot
+    title_x=0.5,
+    xaxis_title_text="Merk", # xaxis label
+    yaxis_title_text="Aantal auto's")                     
+                     
+                     
+dropdown_buttons = [{'label':"All", 'method':"update", 'args':[{"visible":[True,True,True,True,True,True,True,True,True,True,True, True, True]},{"title":"All"}]},
+                    {'label':"Grijs", 'method':"update", 'args':[{"visible":[True,False,False,False,False,False,False,False,False,False, False, False]},{"title":"Grijs"}]},
+                    {'label':"Wit", 'method':"update", 'args':[{"visible":[False,True,False,False,False,False,False,False,False,False, False, False]}, {"title":"Wit"}]},
+                    {'label':"Zwart", 'method':"update", 'args':[{"visible":[False,False,True,False,False,False,False,False,False,False, False, False]}, {"title":"Zwart"}]},
+                    {'label':"Blauw", 'method':"update", 'args':[{"visible":[False,False,False,True,False,False,False,False,False,False, False, False]}, {"title":"Blauw"}]},
+                    {'label':"Rood", 'method':"update", 'args':[{"visible":[False,False,False,False,True,False,False,False,False,False, False, False]}, {"title":"Rood"}]},
+                    {'label':"Bruin", 'method':"update", 'args':[{"visible":[False,False,False,False,False,True,False,False,False,False, False, False]}, {"title":"Bruin"}]},
+                    {'label':"Geel", 'method':"update", 'args':[{"visible":[False,False,False,False,False,False,True,False,False,False, False, False]}, {"title":"Geel"}]},
+                    {'label':"Groen", 'method':"update", 'args':[{"visible":[False,False,False,False,False,False,False,True,False,False, False, False]}, {"title":"Groen"}]},
+                    {'label':"Oranje", 'method':"update", 'args':[{"visible":[False,False,False,False,False,False,False,False,True,False, False, False]}, {"title":"Oranje"}]}, 
+                    {'label':"Paars", 'method':"update", 'args':[{"visible":[False,False,False,False,False,False,False,False,False,True, False, False]}, {"title":"Paars"}]},
+                    {'label':"Beige", 'method':"update", 'args':[{"visible":[False,False,False,False,False,False,False,False,False,False, True, False]}, {"title":"Beige"}]},
+                    {'label':"Creme", 'method':"update", 'args':[{"visible":[False,False,False,False,False,False,False,False,False,False, False, True]}, {"title":"Creme"}]}]                    
+  
+
+#Update de figuur om de dropdown buttons toe te voegen en laat de figuur zien
+fig.update_layout({'updatemenus':[{'active':0, 'buttons':dropdown_buttons}]})
+
+col2.plotly_chart(fig)
 
 
 
@@ -152,39 +186,7 @@ fig = go.Figure()
 
 # Histogram waarbij per merk wordt gekeken naar de gekozen eerste kleur, met dropdown.
 # Waarbij we kijken naar de merken met meer dan 500 counts. 
-fig = go.Figure()
 
-fig = px.histogram(data_frame=df_merk, 
-                   x="Merk", 
-                   color='Eerste kleur',
-                   color_discrete_sequence=["grey", "ivory", "black", "blue", "red", "brown", "yellow", 
-                                           "green", "orange", "purple", "beige", "tan"])
-fig.update_layout(
-    title_text='Soort kleur per automerk', # title of plot
-    title_x=0.5,
-    xaxis_title_text="Merk", # xaxis label
-    yaxis_title_text="Aantal auto's")                     
-                     
-                     
-dropdown_buttons = [{'label':"All", 'method':"update", 'args':[{"visible":[True,True,True,True,True,True,True,True,True,True,True, True, True]},{"title":"All"}]},
-                    {'label':"Grijs", 'method':"update", 'args':[{"visible":[True,False,False,False,False,False,False,False,False,False, False, False]},{"title":"Grijs"}]},
-                    {'label':"Wit", 'method':"update", 'args':[{"visible":[False,True,False,False,False,False,False,False,False,False, False, False]}, {"title":"Wit"}]},
-                    {'label':"Zwart", 'method':"update", 'args':[{"visible":[False,False,True,False,False,False,False,False,False,False, False, False]}, {"title":"Zwart"}]},
-                    {'label':"Blauw", 'method':"update", 'args':[{"visible":[False,False,False,True,False,False,False,False,False,False, False, False]}, {"title":"Blauw"}]},
-                    {'label':"Rood", 'method':"update", 'args':[{"visible":[False,False,False,False,True,False,False,False,False,False, False, False]}, {"title":"Rood"}]},
-                    {'label':"Bruin", 'method':"update", 'args':[{"visible":[False,False,False,False,False,True,False,False,False,False, False, False]}, {"title":"Bruin"}]},
-                    {'label':"Geel", 'method':"update", 'args':[{"visible":[False,False,False,False,False,False,True,False,False,False, False, False]}, {"title":"Geel"}]},
-                    {'label':"Groen", 'method':"update", 'args':[{"visible":[False,False,False,False,False,False,False,True,False,False, False, False]}, {"title":"Groen"}]},
-                    {'label':"Oranje", 'method':"update", 'args':[{"visible":[False,False,False,False,False,False,False,False,True,False, False, False]}, {"title":"Oranje"}]}, 
-                    {'label':"Paars", 'method':"update", 'args':[{"visible":[False,False,False,False,False,False,False,False,False,True, False, False]}, {"title":"Paars"}]},
-                    {'label':"Beige", 'method':"update", 'args':[{"visible":[False,False,False,False,False,False,False,False,False,False, True, False]}, {"title":"Beige"}]},
-                    {'label':"Creme", 'method':"update", 'args':[{"visible":[False,False,False,False,False,False,False,False,False,False, False, True]}, {"title":"Creme"}]}]                    
-  
-
-#Update de figuur om de dropdown buttons toe te voegen en laat de figuur zien
-fig.update_layout({'updatemenus':[{'active':0, 'buttons':dropdown_buttons}]})
-
-st.plotly_chart(fig)
 
 # Histogram waarbij per merk wordt gekeken naar de inrichting, met dropdown.
 # Waarbij we kijken naar de merken met meer dan 500 counts. 

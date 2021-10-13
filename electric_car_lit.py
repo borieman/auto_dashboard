@@ -13,7 +13,7 @@ pio.templates.default = 'seaborn'
 import statsmodels.api as sm
 
 
-#st.set_page_config(layout="wide")
+st.set_page_config(layout="wide")
 
 st.title('Elektrische auto dashboard')
 

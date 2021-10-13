@@ -47,7 +47,7 @@ fig2 = px.histogram(df5,
                     hover_name = 'Started_datum', 
                     labels = {'MaandLabelKort':'Maand', 'Started_datum':'Maand 2018', 'ChargeTime':'oplaadtijd (in uren)'}, 
                     opacity = 0.5, 
-                    range_x = (df5['Started_datum'].min(), df5['Started_datum'].max()),
+                    
                     histfunc = 'avg',
                     nbins = 12, 
                     title = 'Gemiddelde oplaadtijd van de elektrische autos per maand in 2018')

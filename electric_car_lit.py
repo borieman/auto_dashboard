@@ -45,8 +45,7 @@ col1.plotly_chart(fig)
 
 
 
-col2.header("\n
-")
+col2.header("hey", color='white')
 # Aantal zitplaatsen van een object naar een categorie veranderen. 
 df1['Aantal zitplaatsen'] = df1['Aantal zitplaatsen'].astype('category')
 assert df1['Aantal zitplaatsen'].dtype == 'category'

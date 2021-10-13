@@ -27,11 +27,11 @@ df1 = pd.read_csv('RDW_csv.csv')
 
 # Histogram van de hoeveelheid auto met het soort inrichting met een dropdown menu. 
 
-col1 = go.Figure()
+fig = go.Figure()
 col1.header("Histogram")
-col1 = px.histogram(data_frame=df1, 
+fig = px.histogram(data_frame=df1, 
                    x="Inrichting", color='Inrichting')
-col1.update_layout(
+fig.update_layout(
     title_text='Soort inrichting', # title of plot
     title_x=0.5,
     xaxis_title_text="Inrichting", # xaxis label
@@ -52,9 +52,9 @@ dropdown_buttons = [{'label':"All", 'method':"update", 'args':[{"visible":[True,
                      
            
 #Update de figuur om de dropdown buttons toe te voegen en laat de figuur zien
-col1.update_layout({'updatemenus':[{'active':0, 'buttons':dropdown_buttons}]})
+fig.update_layout({'updatemenus':[{'active':0, 'buttons':dropdown_buttons}]})
 
-st.plotly_chart(col1)
+st.plotly_chart(fig)
 
 grayscale = go.Figure()
 col2.header("Grayscale")

@@ -516,7 +516,7 @@ DF_charging = DF_charging[columns]
 
 fig = px.scatter_mapbox(DF_charging, lat='latitude', lon='longitude',    
                      color='Provincie',
-                  mapbox_style='open-street-map', size_max=15, zoom=5.7)
+                  mapbox_style='open-street-map', size_max=15, zoom=5.5)
 
 fig.update_layout(
     updatemenus=[

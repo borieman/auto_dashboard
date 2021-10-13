@@ -34,7 +34,7 @@ fig1 = px.bar(df5,
               animation_frame = "MaandLabelKort", 
               labels = {'DagLabelKort':'Dag', 'MaandLabelKort':'Maand', 'ChargeTime':'Totale oplaadtijd (in uren)'}, 
               opacity = 0.5,
-              title = 'Barplot van de totale oplaadtijd van de elektrische autos per dag per maand in 2018')
+              title = 'Totale oplaadtijd van de elektrische autos per dag per maand in 2018')
 
 #Laat de figuur zien
 st.plotly_chart(fig1)
@@ -50,7 +50,7 @@ fig2 = px.histogram(df5,
                     range_x = (df5['Started_datum'].min(), df5['Started_datum'].max()),
                     histfunc = 'avg',
                     nbins = 12, 
-                    title = 'Histogram van de gemiddelde oplaadtijd van de elektrische autos per maand in 2018')
+                    title = 'Gemiddelde oplaadtijd van de elektrische autos per maand in 2018')
 
 #Dropdown buttons
 dropdown_buttons = [
@@ -95,7 +95,7 @@ fig3 = px.box(df5,
               hover_name = 'Started_datum', 
               labels = {'MaandLabelKort':'Maand', 'ChargeTime':'Oplaadtijd (in uren)'}, 
               points = 'all',
-              title = 'Boxplot van de oplaadtijd van de elektrische autos per maand in 2018')
+              title = 'Oplaadtijd van de elektrische autos per maand in 2018')
 
 #Dropdown buttons
 dropdown_buttons = [
@@ -166,7 +166,7 @@ dropdown_buttons = [
 #Update de figuur
 fig4.update_layout({'updatemenus':[{'active':0, 'buttons':dropdown_buttons}]}, 
                    xaxis_title = 'Oplaadtijd (in uren)', 
-                   title='Kansdichtheidsfunctie van de oplaadtijd van de elektrische autos per maand in 2018', 
+                   title='Oplaadtijd van de elektrische autos per maand in 2018', 
                    legend = {'traceorder':'normal'})
 
 #Laat de figuur zien
@@ -185,7 +185,7 @@ fig5 = px.scatter(df5,
                   opacity = 0.5, 
                   trendline = 'ols', 
                   trendline_scope = 'overall', 
-                  title = 'Scatterplot van de totale energie, oplaadtijd en maximaal vermogen van de elektrische autos')
+                  title = 'Totaal verbruikte energie, oplaadtijd en maximaal gevraagde vermogen van de elektrische autos')
 
 #Laat de figuur zien
 st.plotly_chart(fig5)

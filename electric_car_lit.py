@@ -21,7 +21,7 @@ st.write("""
 ***
 """)
 
-col1, col2 = st.columns(2)
+col1, col2 = st.beta_columns(2)
 
 df1 = pd.read_csv('RDW_csv.csv')
 

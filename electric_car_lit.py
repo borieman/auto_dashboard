@@ -217,6 +217,49 @@ fig.update_layout({'updatemenus':[{'active':0, 'buttons':dropdown_buttons}]})
 st.plotly_chart(fig)
 
 
+df1['Aantal zitplaatsen'] = df1['Aantal zitplaatsen'].astype('category')
+assert df1['Aantal zitplaatsen'].dtype == 'category'
+print(df1['Aantal zitplaatsen'].describe())
+
+# Selecteren op Handelsbenamen met meer dan 3000 counts. 
+df_veel = df1[df1['Handelsbenaming'].map(df1['Handelsbenaming'].value_counts()) > 3000]
+
+
+# Histogram waarbij per handelsbenaming wordt gekeken naar het aantal zitplaatsen, met dropdown.
+# Waarbij we kijken naar de handelsbenaming met meer dan 3000 counts. 
+fig = go.Figure()
+
+fig = px.histogram(data_frame=df_veel, 
+                   x="Handelsbenaming", 
+                   color='Aantal zitplaatsen')
+
+fig.update_layout(
+    title_text='Handelsbenaming met zitplaats', # title of plot
+    title_x=0.5,
+    xaxis_title_text="Handelsbenaming", # xaxis label
+    yaxis_title_text="Aantal zitplaatsen") 
+
+dropdown_buttons = [
+{'label': "ALL", 'method': "update", 'args': [{"visible": [True, True, True,True,True,True,True,True,True]}, {"title": "ALL"}]},
+{'label': "1.0", 'method': "update", 'args': [{"visible": [False, False, False,False,True,False,False,False,False]}, {"title": 1.0}]},
+{'label': "2.0", 'method': "update", 'args': [{"visible": [False, False, False,False,False,False,True,False,False]}, {"title": 2.0}]},
+{'label': "3.0", 'method': "update", 'args': [{"visible": [False, False, False,False,False,True,False,False,False]}, {"title": 3.0}]},
+{'label': "4.0", 'method': "update", 'args': [{"visible": [False, False, False, True, False,False,False,False,False]}, {"title": 4.0}]},
+{'label': "5.0", 'method': "update", 'args': [{"visible": [True, False, False,False,False,False,False,False,False]}, {"title": 5.0}]},
+{'label': "6.0", 'method': "update", 'args': [{"visible": [False, False, True,False,False,False,False,False,False]}, {"title": 6.0}]},
+{'label': "7.0", 'method': "update", 'args': [{"visible": [False, True, False,False,False,False,False,False,False]}, {"title": 7.0}]},
+{'label': "8.0", 'method': "update", 'args': [{"visible": [False, False, False,False,False,False,False,True,False]}, {"title": 8.0}]},
+{'label': "9.0", 'method': "update", 'args': [{"visible": [False, False, False,False,False,False,False,False,True]}, {"title": 9.0}]},
+
+]
+
+
+
+# Update the figure to add dropdown menu
+fig.update_layout({'updatemenus': [{'active': 0, 'buttons': dropdown_buttons}]})
+
+st.plotly_chart(fig)
+
 
 
 #INGEEEEEEE

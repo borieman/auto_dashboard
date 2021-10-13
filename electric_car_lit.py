@@ -55,30 +55,24 @@ original.update_layout({'updatemenus':[{'active':0, 'buttons':dropdown_buttons}]
 
 st.plotly_chart(original)
 
-# grayscale = original.convert('LA')
-# col2.header("Grayscale")
-# col2.image(grayscale, use_column_width=True)
-
-#fig = go.Figure()
-
-
-
+grayscale = go.Figure()
+col2.header("Grayscale")
 
 # Alleen de merken meenemen die meer dan 500 counts bevatten.
 df_merk = df1[df1['Merk'].map(df1['Merk'].value_counts()) > 500]
 
 # Histogram van het aantal per merk, waarbij we kijken naar de merken met meer dan 500 counts. 
-fig = go.Figure()
+# fig = go.Figure()
 
-fig = px.histogram(data_frame=df_merk, 
+grayscale = px.histogram(data_frame=df_merk, 
                    x="Merk", color='Merk').update_xaxes(categoryorder='total descending')
-fig.update_layout(
+grayscale.update_layout(
     title_text='Aantallen per automerk', # title of plot
     title_x=0.5,
     xaxis_title_text="Automerk", # xaxis label
     yaxis_title_text="Aantal auto's")
 
-st.plotly_chart(fig)
+st.plotly_chart(grayscale)
 
 # Histogram van het aantal per kleur. 
 fig = go.Figure()

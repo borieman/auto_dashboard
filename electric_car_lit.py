@@ -289,7 +289,7 @@ fig2 = px.histogram(df5,
                     range_x = (df5['Started_datum'].min(), df5['Started_datum'].max()),
                     histfunc = 'avg',
                     nbins = 12, 
-                    title = 'Gemiddelde oplaadtijd van de elektrische autos per maand in 2018')
+                    title = 'Histogram van de gemiddelde oplaadtijd van de elektrische autos per maand in 2018')
 
 #Dropdown buttons
 dropdown_buttons = [
@@ -310,17 +310,17 @@ dropdown_buttons = [
 
 #Lijn met annotatie van de gemiddelde oplaadtijd
 fig2.add_hline(y = df5['ChargeTime'].mean(), 
-              line_dash = "dot", 
-              line_width = 2,
-              annotation_text = "Gemiddelde oplaadtijd (in uren)", 
-              annotation_position = "top right", yref = 'paper', xref = 'paper')
+               line_dash = "dot", 
+               line_width = 2,
+               annotation_text = "Gemiddelde oplaadtijd (in uren)", 
+               annotation_position = "top right")
 
 #Lijn met annotatie van de mediane oplaadtijd
 fig2.add_hline(y = df5['ChargeTime'].median(), 
-              line_dash = "dot", 
-              line_width = 2,
-              annotation_text = "Mediane oplaadtijd (in uren)", 
-              annotation_position = "bottom right", yref = 'paper', xref = 'paper')
+               line_dash = "dot", 
+               line_width = 2, 
+               annotation_text = "Mediane oplaadtijd (in uren)", 
+               annotation_position = "bottom right")
 
 #Update de figuur
 fig2.update_layout({'updatemenus':[{'active':0, 'buttons':dropdown_buttons}]})

@@ -12,15 +12,12 @@ import plotly.io as pio
 pio.templates.default = 'seaborn'
 import statsmodels.api as sm
 
-
-st.set_page_config(layout="wide")
-
 st.title('Elektrische auto dashboard')
 
 st.write("""
 ***
 """)
-
+st.set_page_config(layout="wide")
 col1, col2 = st.beta_columns(2)
 
 df1 = pd.read_csv('RDW_csv.csv')

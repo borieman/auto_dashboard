@@ -505,7 +505,7 @@ with open('opencharge_10000.json') as json_file:
 
 
 chargingDf = pd.DataFrame(rows,columns=columnNames)
-chargingDf.head()
+print(chargingDf.head())
 
 
 # #solution: merge a new dataframe that contains the correct geograhpal information on de 'postcode' column

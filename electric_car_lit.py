@@ -12,8 +12,7 @@ import plotly.io as pio
 pio.templates.default = 'seaborn'
 import statsmodels.api as sm
 
-
-#st.set_page_config(layout="wide")
+st.beta_set_page_config(layout="wide")
 
 st.title('Elektrische auto dashboard')
 
@@ -25,13 +24,98 @@ col1, col2 = st.beta_columns(2)
 
 df1 = pd.read_csv('RDW_csv.csv')
 
-# Histogram van de hoeveelheid auto met het soort inrichting met een dropdown menu. 
+# Alleen de merken meenemen die meer dan 500 counts bevatten.
+df_merk = df1[df1['Merk'].map(df1['Merk'].value_counts()) > 500]
 
-col1 = go.Figure()
-col1.header("Histogram")
-col1 = px.histogram(data_frame=df1, 
+
+col1.header("Algemene informatie elektrische auto's")
+
+# Histogram van het aantal per merk, waarbij we kijken naar de merken met meer dan 500 counts. 
+fig = go.Figure()
+
+fig = px.histogram(data_frame=df_merk, 
+                   x="Merk", color='Merk').update_xaxes(categoryorder='total descending')
+fig.update_layout(
+    title_text='Aantallen per automerk', # title of plot
+    title_x=0.5,
+    xaxis_title_text="Automerk", # xaxis label
+    yaxis_title_text="Aantal auto's")
+
+col1.plotly_chart(fig)
+
+
+
+col2.header("🚗")
+# Aantal zitplaatsen van een object naar een categorie veranderen. 
+df1['Aantal zitplaatsen'] = df1['Aantal zitplaatsen'].astype('category')
+assert df1['Aantal zitplaatsen'].dtype == 'category'
+print(df1['Aantal zitplaatsen'].describe())
+
+# Selecteren op Handelsbenamen met meer dan 3000 counts. 
+df_veel = df1[df1['Handelsbenaming'].map(df1['Handelsbenaming'].value_counts()) > 3000]
+
+# Histogram waarbij per handelsbenaming wordt gekeken naar het aantal zitplaatsen, met dropdown.
+# Waarbij we kijken naar de handelsbenaming met meer dan 3000 counts. 
+fig = go.Figure()
+
+fig = px.histogram(data_frame=df_veel, 
+                   x="Handelsbenaming", 
+                   color='Aantal zitplaatsen')
+
+fig.update_layout(
+    title_text='Handelsbenaming met zitplaats', # title of plot
+    title_x=0.5,
+    xaxis_title_text="Handelsbenaming", # xaxis label
+    yaxis_title_text="Aantal zitplaatsen") 
+
+dropdown_buttons = [
+{'label': "ALL", 'method': "update", 'args': [{"visible": [True, True, True,True,True,True,True,True,True]}, {"title": "ALL"}]},
+{'label': "1.0", 'method': "update", 'args': [{"visible": [False, False, False,False,True,False,False,False,False]}, {"title": 1.0}]},
+{'label': "2.0", 'method': "update", 'args': [{"visible": [False, False, False,False,False,False,True,False,False]}, {"title": 2.0}]},
+{'label': "3.0", 'method': "update", 'args': [{"visible": [False, False, False,False,False,True,False,False,False]}, {"title": 3.0}]},
+{'label': "4.0", 'method': "update", 'args': [{"visible": [False, False, False, True, False,False,False,False,False]}, {"title": 4.0}]},
+{'label': "5.0", 'method': "update", 'args': [{"visible": [True, False, False,False,False,False,False,False,False]}, {"title": 5.0}]},
+{'label': "6.0", 'method': "update", 'args': [{"visible": [False, False, True,False,False,False,False,False,False]}, {"title": 6.0}]},
+{'label': "7.0", 'method': "update", 'args': [{"visible": [False, True, False,False,False,False,False,False,False]}, {"title": 7.0}]},
+{'label': "8.0", 'method': "update", 'args': [{"visible": [False, False, False,False,False,False,False,True,False]}, {"title": 8.0}]},
+{'label': "9.0", 'method': "update", 'args': [{"visible": [False, False, False,False,False,False,False,False,True]}, {"title": 9.0}]},
+
+]
+
+# Update the figure to add dropdown menu
+fig.update_layout({'updatemenus': [{'active': 0, 'buttons': dropdown_buttons}]})
+col2.plotly_chart(fig)
+
+
+col1.header("Kleuren van de auto's")
+# Histogram van het aantal per kleur. 
+fig = go.Figure()
+
+fig = px.histogram(data_frame = df1, 
+                   x = "Eerste kleur",
+                   color = df1['Eerste kleur'],
+                   color_discrete_sequence=["grey", "ivory", "black", "blue", "red", "brown", "yellow", 
+                                           "green", "orange", "purple", "beige", "tan"])
+
+
+fig.update_layout(
+    title_text="Aantal auto's per kleur", # title of plot
+    title_x=0.5,
+    xaxis_title_text="Gekozen eerste kleur", # xaxis label
+    yaxis_title_text="Aantal auto's", legend_title = 'Kleur')
+
+col1.plotly_chart(fig)
+
+
+
+
+
+
+# Histogram van de hoeveelheid auto met het soort inrichting met een dropdown menu. 
+fig = go.Figure()
+fig = px.histogram(data_frame=df1, 
                    x="Inrichting", color='Inrichting')
-col1.update_layout(
+fig.update_layout(
     title_text='Soort inrichting', # title of plot
     title_x=0.5,
     xaxis_title_text="Inrichting", # xaxis label
@@ -52,46 +136,18 @@ dropdown_buttons = [{'label':"All", 'method':"update", 'args':[{"visible":[True,
                      
            
 #Update de figuur om de dropdown buttons toe te voegen en laat de figuur zien
-col1.update_layout({'updatemenus':[{'active':0, 'buttons':dropdown_buttons}]})
-
-st.plotly_chart(col1)
-
-grayscale = go.Figure()
-col2.header("Grayscale")
-
-# Alleen de merken meenemen die meer dan 500 counts bevatten.
-df_merk = df1[df1['Merk'].map(df1['Merk'].value_counts()) > 500]
-
-# Histogram van het aantal per merk, waarbij we kijken naar de merken met meer dan 500 counts. 
-# fig = go.Figure()
-
-grayscale = px.histogram(data_frame=df_merk, 
-                   x="Merk", color='Merk').update_xaxes(categoryorder='total descending')
-grayscale.update_layout(
-    title_text='Aantallen per automerk', # title of plot
-    title_x=0.5,
-    xaxis_title_text="Automerk", # xaxis label
-    yaxis_title_text="Aantal auto's")
-
-st.plotly_chart(grayscale)
-
-# Histogram van het aantal per kleur. 
-fig = go.Figure()
-
-fig = px.histogram(data_frame = df1, 
-                   x = "Eerste kleur",
-                   color = df1['Eerste kleur'],
-                   color_discrete_sequence=["grey", "ivory", "black", "blue", "red", "brown", "yellow", 
-                                           "green", "orange", "purple", "beige", "tan"])
-
-
-fig.update_layout(
-    title_text="Aantal auto's per kleur", # title of plot
-    title_x=0.5,
-    xaxis_title_text="Gekozen eerste kleur", # xaxis label
-    yaxis_title_text="Aantal auto's", legend_title = 'Kleur')
+fig.update_layout({'updatemenus':[{'active':0, 'buttons':dropdown_buttons}]})
 
 st.plotly_chart(fig)
+
+fig = go.Figure()
+
+
+
+
+
+
+
 
 
 # Histogram waarbij per merk wordt gekeken naar de gekozen eerste kleur, met dropdown.
@@ -217,47 +273,7 @@ fig.update_layout({'updatemenus':[{'active':0, 'buttons':dropdown_buttons}]})
 
 st.plotly_chart(fig)
 
-# Aantal zitplaatsen van een object naar een categorie veranderen. 
-df1['Aantal zitplaatsen'] = df1['Aantal zitplaatsen'].astype('category')
-assert df1['Aantal zitplaatsen'].dtype == 'category'
-print(df1['Aantal zitplaatsen'].describe())
 
-# Selecteren op Handelsbenamen met meer dan 3000 counts. 
-df_veel = df1[df1['Handelsbenaming'].map(df1['Handelsbenaming'].value_counts()) > 3000]
-
-# Histogram waarbij per handelsbenaming wordt gekeken naar het aantal zitplaatsen, met dropdown.
-# Waarbij we kijken naar de handelsbenaming met meer dan 3000 counts. 
-fig = go.Figure()
-
-fig = px.histogram(data_frame=df_veel, 
-                   x="Handelsbenaming", 
-                   color='Aantal zitplaatsen')
-
-fig.update_layout(
-    title_text='Handelsbenaming met zitplaats', # title of plot
-    title_x=0.5,
-    xaxis_title_text="Handelsbenaming", # xaxis label
-    yaxis_title_text="Aantal zitplaatsen") 
-
-dropdown_buttons = [
-{'label': "ALL", 'method': "update", 'args': [{"visible": [True, True, True,True,True,True,True,True,True]}, {"title": "ALL"}]},
-{'label': "1.0", 'method': "update", 'args': [{"visible": [False, False, False,False,True,False,False,False,False]}, {"title": 1.0}]},
-{'label': "2.0", 'method': "update", 'args': [{"visible": [False, False, False,False,False,False,True,False,False]}, {"title": 2.0}]},
-{'label': "3.0", 'method': "update", 'args': [{"visible": [False, False, False,False,False,True,False,False,False]}, {"title": 3.0}]},
-{'label': "4.0", 'method': "update", 'args': [{"visible": [False, False, False, True, False,False,False,False,False]}, {"title": 4.0}]},
-{'label': "5.0", 'method': "update", 'args': [{"visible": [True, False, False,False,False,False,False,False,False]}, {"title": 5.0}]},
-{'label': "6.0", 'method': "update", 'args': [{"visible": [False, False, True,False,False,False,False,False,False]}, {"title": 6.0}]},
-{'label': "7.0", 'method': "update", 'args': [{"visible": [False, True, False,False,False,False,False,False,False]}, {"title": 7.0}]},
-{'label': "8.0", 'method': "update", 'args': [{"visible": [False, False, False,False,False,False,False,True,False]}, {"title": 8.0}]},
-{'label': "9.0", 'method': "update", 'args': [{"visible": [False, False, False,False,False,False,False,False,True]}, {"title": 9.0}]},
-
-]
-
-
-
-# Update the figure to add dropdown menu
-fig.update_layout({'updatemenus': [{'active': 0, 'buttons': dropdown_buttons}]})
-st.plotly_chart(fig)
 
 
 
@@ -512,6 +528,37 @@ st.plotly_chart(fig5)
 
 
 
+# import folium
+# from folium.plugins import MarkerCluster
+# #Code voor het maken van een kleurloze map van Nederland 
+# m = folium.Map(location = HVAcords, zoom_start = 7.5, tiles = 'Cartodb Positron')
+
+# #Code voor het toevoegen van drie markers op drie verschillende locaties in Nederland
+# #DF_charging2 = pd.DataFrame(DF_charging)
+# filterProvince = DF_charging['Provincie'] == 'Overijssel'
+
+# for key,charger in DF_charging[filterProvince].iterrows():
+#     #print(charger)
+#     folium.Marker(location = [charger['latitude'], charger['longitude']], popup = charger['OperatorTitle']+'\n locatie: '+str(charger['latitude'])+' '+str(charger['longitude'])).add_to(m)
+    
+    
+# folium.LayerControl().add_to(m)    
+    
+# #Laat de map zien
+# st.plotly_chart(m)
+
+
+
+
+
+
+
+
+
+# #Update de figuur om de dropdown buttons toe te voegen en laat de figuur zien
+# fig.update_layout({'updatemenus':[{'active':0, 'buttons':dropdown_buttons}]})
+
+# st.plotly_chart(fig)
 
 st.markdown(""" 
 blip bloop bloop 

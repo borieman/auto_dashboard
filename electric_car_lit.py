@@ -514,6 +514,72 @@ DF_charging = chargingDf.merge(postcodedf, left_on='Postcode',right_on='Postcode
 columns = ['OperatorTitle','Postcode','latitude','longitude','distance','connectTypeTitle','connectTypeDiscont','isfastcharge','levelTitle','dateLSU','dateCreated','Gemeente','Provincie','Latitude','Longitude']
 DF_charging = DF_charging[columns]
 
+fig = px.scatter_mapbox(DF_charging, lat='latitude', lon='longitude',    
+                     color='Provincie',
+                  mapbox_style='open-street-map', size_max=15, zoom=5.7)
+
+fig.update_layout(
+    updatemenus=[
+        dict(
+            active=0,
+            buttons=list([
+                dict(label="Nederland",
+                     method="update",
+                     args=[{"visible": [True]},
+                           {"title": "Nederland"}]),
+                dict(label="Noord_Holland",
+                     method="update",
+                     args=[{"visible": [True, False, False, False, False, False, False, False, False, False, False, False]},
+                           {"title": "Noord_Holland"}]),
+                dict(label="Utrecht",
+                     method="update",
+                     args=[{"visible": [False, True, False, False, False, False, False, False, False, False, False, False]},
+                           {"title": "Utrecht"}]),
+                dict(label="Flevoland",
+                     method="update",
+                     args=[{"visible": [False, False, True, False, False, False, False, False, False, False, False, False]},
+                           {"title": "Flevoland"}]),
+                dict(label="Zuid-Holland",
+                     method="update",
+                     args=[{"visible": [False, False, False, True, False, False, False, False, False, False, False, False]},
+                           {"title": "Zuid-Holland"}]),
+                dict(label="Noord-Brabant",
+                     method="update",
+                     args=[{"visible": [False, False, False, False, True, False, False, False, False, False, False, False]},
+                           {"title": "Noord-Brabant"}]),
+                dict(label="Gelderland",
+                     method="update",
+                     args=[{"visible": [False, False, False, False, False, True, False, False, False, False, False, False]},
+                           {"title": "Gelderland"}]),
+                dict(label="Overijssel",
+                     method="update",
+                     args=[{"visible": [False, False, False, False, False, False, True, False, False, False, False, False]},
+                           {"title": "Overijssel"}]),
+                dict(label="Friesland",
+                     method="update",
+                     args=[{"visible": [False, False, False, False, False, False, False, True, False, False, False, False]},
+                           {"title": "Friesland"}]),
+                dict(label="Limburg",
+                     method="update",
+                     args=[{"visible": [False, False, False, False, False, False, False, False, True, False, False, False]},
+                           {"title": "Limburg"}]),
+                dict(label="Drenhte",
+                     method="update",
+                     args=[{"visible": [False, False, False, False, False, False, False, False, False, True, False, False]},
+                           {"title": "Drenhte"}]),
+                dict(label="Zeeland",
+                     method="update",
+                     args=[{"visible": [False, False, False, False, False, False, False, False, False, False, True, False]},
+                           {"title": "Zeeland"}]),
+                dict(label="Groningen",
+                     method="update",
+                     args=[{"visible": [False, False, False, False, False, False, False, False, False, False, False, True,]},
+                           {"title": "Groningen"}]),
+            ]),
+        )
+    ])
+fig.update_layout(title_text="Nederland laadpalen")
+st.plotly_chart(fig)
 
 
 st.write("""

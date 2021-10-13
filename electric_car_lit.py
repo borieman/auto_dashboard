@@ -87,7 +87,7 @@ fig2.add_hline(y = df5['ChargeTime'].median(),
 fig2.update_layout({'updatemenus':[{'active':0, 'buttons':dropdown_buttons}]})
 
 #Laat de figuur zien
-st.plotly_chart(fig2)
+st.write(fig2)
 
 #Code voor interactieve boxplot met plotly.express
 fig3 = px.box(df5, 

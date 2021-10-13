@@ -40,7 +40,35 @@ fig.update_layout(
 st.plotly_chart(fig)
 
 
+# Histogram van de hoeveelheid auto met het soort inrichting met een dropdown menu. 
+fig = go.Figure()
 
+fig = px.histogram(data_frame=df1, 
+                   x="Inrichting", color='Inrichting')
+fig.update_layout(
+    title_text='Soort inrichting', # title of plot
+    title_x=0.5,
+    xaxis_title_text="Inrichting", # xaxis label
+    yaxis_title_text="Aantal auto's")
+
+dropdown_buttons = [{'label':"All", 'method':"update", 'args':[{"visible":[True,True,True,True,True,True,True,True,True,True,True]},{"title":"All"}]},
+                    {'label':"Stationwagen", 'method':"update", 'args':[{"visible":[True,False,False,False,False,False,False,False,False,False]},{"title":"Stationwagen"}]},
+                    {'label':"Sedan", 'method':"update", 'args':[{"visible":[False,True,False,False,False,False,False,False,False,False]}, {"title":"Sedan"}]},
+                    {'label':"Hatchback", 'method':"update", 'args':[{"visible":[False,False,True,False,False,False,False,False,False,False]}, {"title":"Hatchback"}]},
+                    {'label':"Multi-Purpose Vehicle", 'method':"update", 'args':[{"visible":[False,False,False,True,False,False,False,False,False,False]}, {"title":"Multi-Purpose Vehicle"}]},
+                    {'label':"Coupe", 'method':"update", 'args':[{"visible":[False,False,False,False,True,False,False,False,False,False]}, {"title":"Coupe"}]},
+                    {'label':"Rolstoel toegankelijk", 'method':"update", 'args':[{"visible":[False,False,False,False,False,True,False,False,False,False]}, {"title":"Rolstoel toegankelijk"}]},
+                    {'label':"Cabriolet", 'method':"update", 'args':[{"visible":[False,False,False,False,False,False,True,False,False,False]}, {"title":"Cabriolet"}]},
+                    {'label':"Niet geregistreerd", 'method':"update", 'args':[{"visible":[False,False,False,False,False,False,False,True,False,False]}, {"title":"Niet geregistreerd"}]},
+                    {'label':"Kampeerwagen", 'method':"update", 'args':[{"visible":[False,False,False,False,False,False,False,False,True,False]}, {"title":"Kampeerwagen"}]}, 
+                    {'label':"Speciale groep", 'method':"update", 'args':[{"visible":[False,False,False,False,False,False,False,False,False,True]}, {"title":"Speciale groep"}]}]                    
+  
+                     
+           
+#Update de figuur om de dropdown buttons toe te voegen en laat de figuur zien
+fig.update_layout({'updatemenus':[{'active':0, 'buttons':dropdown_buttons}]})
+
+st.plotly_chart(fig)
 
 
 

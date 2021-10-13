@@ -20,6 +20,17 @@ st.write("""
 ***
 """)
 
+col1, col2 = st.columns(2)
+
+original = Image.open(image)
+col1.header("Original")
+col1.image(original, use_column_width=True)
+
+grayscale = original.convert('LA')
+col2.header("Grayscale")
+col2.image(grayscale, use_column_width=True)
+
+
 
 df1 = pd.read_csv('RDW_csv.csv')
 

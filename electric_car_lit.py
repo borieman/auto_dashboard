@@ -502,10 +502,12 @@ with open('opencharge_10000.json') as json_file:
             #
             rows.append([OperatorTitle,postcode,town,province,latitude,longitude,distance,connectTypeTitle,connectTypeDiscont,isfastcharge,levelTitle,dateLSU,dateCreated])
 
+# #Dataframe van alle stationsinformatie
+# df_stations = pd.DataFrame(stations)
+# print(df_stations.columns)
 
-
-chargingDf = pd.DataFrame(rows,columns=columnNames)
-print(chargingDf.head())
+chargingDf = pd.DataFrame(rows, columns=columnNames)
+print(chargingDf.columns())
 
 
 # #solution: merge a new dataframe that contains the correct geograhpal information on de 'postcode' column

@@ -117,7 +117,7 @@ dropdown_buttons = [
 ]
 
 #Lijn met annotatie van de gemiddelde oplaadtijd
-fig3.add_hline(y = df5['ChargeTime'].mean(), 
+fig3.add_hline(y = df5['ChargeTime'].mean(), line_width=2,
                line_dash = "dot",
                annotation_text = "Gemiddelde oplaadtijd (in uren)", 
                annotation_position = "top right")

@@ -289,7 +289,7 @@ fig2 = px.histogram(df5,
                     range_x = (df5['Started_datum'].min(), df5['Started_datum'].max()),
                     histfunc = 'avg',
                     nbins = 12, 
-                    title = 'Histogram van de gemiddelde oplaadtijd van de elektrische autos per maand in 2018')
+                    title = 'Gemiddelde oplaadtijd van de elektrische autos per maand in 2018')
 
 #Dropdown buttons
 dropdown_buttons = [

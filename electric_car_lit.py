@@ -19,6 +19,30 @@ st.title('Elektrische auto dashboard')
 st.write("""
 ***
 """)
+#Coco en Boris
+
+df1 = pd.read_csv('RDW_csv.csv')
+
+# Alleen de merken meenemen die meer dan 500 counts bevatten.
+df_merk = df1[df1['Merk'].map(df1['Merk'].value_counts()) > 500]
+
+# Histogram van het aantal per merk, waarbij we kijken naar de merken met meer dan 500 counts. 
+fig = go.Figure()
+
+fig = px.histogram(data_frame=df_merk, 
+                   x="Merk", color='Merk').update_xaxes(categoryorder='total descending')
+fig.update_layout(
+    title_text='Aantallen per automerk', # title of plot
+    title_x=0.5,
+    xaxis_title_text="Automerk", # xaxis label
+    yaxis_title_text="Aantal auto's")
+
+st.plotly_chart(fig)
+
+
+
+
+
 
 #INGEEEEEEE
 #Laad en lees df3 in 
@@ -74,20 +98,20 @@ fig2.add_hline(y = df5['ChargeTime'].mean(),
                line_width=2,
               line_dash = "dot", 
               annotation_text = "Gemiddelde oplaadtijd (in uren)", 
-              annotation_position = "top right", yref = 'paper', xref = 'paper')
+              annotation_position = "top right")
 
 #Lijn met annotatie van de mediane oplaadtijd
 fig2.add_hline(y = df5['ChargeTime'].median(), 
                line_width=2,
               line_dash = "dot", 
               annotation_text = "Mediane oplaadtijd (in uren)", 
-              annotation_position = "bottom right", yref = 'paper', xref = 'paper')
+              annotation_position = "bottom right")
 
 #Update de figuur
 fig2.update_layout({'updatemenus':[{'active':0, 'buttons':dropdown_buttons}]})
 
 #Laat de figuur zien
-st.plotly_chart(fig2)
+st.write(fig2)
 
 #Code voor interactieve boxplot met plotly.express
 fig3 = px.box(df5, 
@@ -117,7 +141,7 @@ dropdown_buttons = [
 ]
 
 #Lijn met annotatie van de gemiddelde oplaadtijd
-fig3.add_hline(y = df5['ChargeTime'].mean(), line_width=2,
+fig3.add_hline(y = df5['ChargeTime'].mean(), 
                line_dash = "dot",
                annotation_text = "Gemiddelde oplaadtijd (in uren)", 
                annotation_position = "top right")

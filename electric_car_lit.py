@@ -54,7 +54,7 @@ dropdown_buttons = [{'label':"All", 'method':"update", 'args':[{"visible":[True,
 #Update de figuur om de dropdown buttons toe te voegen en laat de figuur zien
 fig.update_layout({'updatemenus':[{'active':0, 'buttons':dropdown_buttons}]})
 
-st.plotly_chart(fig)
+col1.plotly_chart(fig)
 
 grayscale = go.Figure()
 col2.header("Grayscale")
@@ -73,7 +73,7 @@ grayscale.update_layout(
     xaxis_title_text="Automerk", # xaxis label
     yaxis_title_text="Aantal auto's")
 
-st.plotly_chart(grayscale)
+col2.plotly_chart(grayscale)
 
 # Histogram van het aantal per kleur. 
 fig = go.Figure()

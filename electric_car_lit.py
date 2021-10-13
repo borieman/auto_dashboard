@@ -46,7 +46,7 @@ col1.plotly_chart(fig)
 
 
 
-col2.header(" ")
+col2.header("Grayscale")
 # Aantal zitplaatsen van een object naar een categorie veranderen. 
 df1['Aantal zitplaatsen'] = df1['Aantal zitplaatsen'].astype('category')
 assert df1['Aantal zitplaatsen'].dtype == 'category'
@@ -127,8 +127,8 @@ fig.update_layout({'updatemenus':[{'active':0, 'buttons':dropdown_buttons}]})
 
 st.plotly_chart(fig)
 
-grayscale = go.Figure()
-col2.header("Grayscale")
+fig = go.Figure()
+
 
 
 

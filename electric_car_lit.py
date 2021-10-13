@@ -12,7 +12,7 @@ import plotly.io as pio
 pio.templates.default = 'seaborn'
 import statsmodels.api as sm
 
-$ pip install streamlit --upgrade
+pip install streamlit --upgrade
 
 #st.set_page_config(layout="wide")
 

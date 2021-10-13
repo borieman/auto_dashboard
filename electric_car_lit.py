@@ -22,24 +22,15 @@ st.write("""
 
 col1, col2 = st.columns(2)
 
-original = Image.open(image)
-col1.header("Original")
-col1.image(original, use_column_width=True)
-
-grayscale = original.convert('LA')
-col2.header("Grayscale")
-col2.image(grayscale, use_column_width=True)
-
-
-
 df1 = pd.read_csv('RDW_csv.csv')
 
 # Histogram van de hoeveelheid auto met het soort inrichting met een dropdown menu. 
-fig = go.Figure()
 
-fig = px.histogram(data_frame=df1, 
+original = go.Figure()
+col1.header("Histogram")
+original = px.histogram(data_frame=df1, 
                    x="Inrichting", color='Inrichting')
-fig.update_layout(
+original.update_layout(
     title_text='Soort inrichting', # title of plot
     title_x=0.5,
     xaxis_title_text="Inrichting", # xaxis label
@@ -60,9 +51,17 @@ dropdown_buttons = [{'label':"All", 'method':"update", 'args':[{"visible":[True,
                      
            
 #Update de figuur om de dropdown buttons toe te voegen en laat de figuur zien
-fig.update_layout({'updatemenus':[{'active':0, 'buttons':dropdown_buttons}]})
+original.update_layout({'updatemenus':[{'active':0, 'buttons':dropdown_buttons}]})
 
-st.plotly_chart(fig)
+st.plotly_chart(original)
+
+# grayscale = original.convert('LA')
+# col2.header("Grayscale")
+# col2.image(grayscale, use_column_width=True)
+
+#fig = go.Figure()
+
+
 
 
 # Alleen de merken meenemen die meer dan 500 counts bevatten.
